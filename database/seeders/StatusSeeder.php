@@ -2,8 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Status;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -16,12 +15,24 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-        $data = [
-            ['status_name'=>'Todo'],
-            ['status_name'=>'In Progress'],
-            ['status_name'=>'Completed'],
+        $statuses = [
+            [
+                'status_name' => 'Todo',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'status_name' => 'In Progress',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'status_name' => 'Completed',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ]
         ];
 
-        Status::insert($data);
+        DB::table('statuses')->insert($statuses);
     }
 }
