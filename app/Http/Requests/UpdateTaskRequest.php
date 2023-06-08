@@ -25,7 +25,7 @@ class UpdateTaskRequest extends FormRequest
     {
         return [
             'name' => 'filled|string|min:1|max:255',
-            'status' => 'filled|string|exists:statuses,id'
+            'status_id' => 'filled|string|exists:statuses,id'
         ];
     }
 }

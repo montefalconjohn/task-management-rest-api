@@ -66,7 +66,7 @@ class TaskController extends Controller
     public function update(UpdateTaskRequest $request, int $id): JsonResponse
     {
         $this->taskService->updateTask($request, $id);
-        return response()->json('Task ipdated.');
+        return response()->json('Task Updated.');
     }
 
     /**
