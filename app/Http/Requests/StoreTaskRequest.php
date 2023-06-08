@@ -24,8 +24,7 @@ class StoreTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:1|max:255',
-            'status' => 'required|string|exists:statuses,id'
+            'name' => 'required|string|min:1|max:255'
         ];
     }
 }

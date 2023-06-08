@@ -2,41 +2,47 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TaskResource;
 use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Services\TaskServiceInterface;
+use Illuminate\Http\JsonResponse;
 
 class TaskController extends Controller
 {
+    /** @var TaskServiceInterface  */
+    private TaskServiceInterface $taskService;
+
     /**
-     * Display a listing of the resource.
+     * TaskController constructor.
      *
-     * @return \Illuminate\Http\Response
+     * @param TaskServiceInterface $taskService
      */
-    public function index()
+    public function __construct(TaskServiceInterface $taskService)
     {
-        //
+        $this->taskService = $taskService;
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function create()
+    public function index()
     {
-        //
+        return TaskResource::collection($this->taskService->fetchTasks());
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreTaskRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param StoreTaskRequest $request
+     * @return TaskResource
      */
-    public function store(StoreTaskRequest $request)
+    public function store(StoreTaskRequest $request): TaskResource
     {
-        //
+        return new TaskResource($this->taskService->createTask($request));
     }
 
     /**
@@ -51,36 +57,29 @@ class TaskController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Update the specified resource in storage
      *
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
+     * @param UpdateTaskRequest $request
+     * @param int $id
+     * @return JsonResponse
      */
-    public function edit(Task $task)
+    public function update(UpdateTaskRequest $request, int $id): JsonResponse
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateTaskRequest  $request
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateTaskRequest $request, Task $task)
-    {
-        //
+        $this->taskService->updateTask($request, $id);
+        return response()->json('Task ipdated.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Task  $task
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return JsonResponse
      */
-    public function destroy(Task $task)
+    public function destroy(int $id): JsonResponse
     {
-        //
+        $this->taskService->deleteTask($id);
+
+        // Display success message
+        return response()->json('Task successfully deleted.');
     }
 }
