@@ -16,7 +16,7 @@ use App\Http\Controllers\TaskController;
 
 Route::group(['prefix' => 'task-management'], function () {
     Route::controller(TaskController::class)->group(function () {
-        Route::get('/tasks/{id}', 'index');
+        Route::get('/tasks', 'index');
         Route::post('/tasks', 'store');
         Route::patch('/tasks/{id}', 'update');
         Route::delete('/tasks/{id}', 'destroy');
