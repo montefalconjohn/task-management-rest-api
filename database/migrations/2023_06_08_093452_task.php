@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Many to One
-            $table->foreignId('statuses_id')
+            $table->foreignId('status_id')
                 ->nullable()
                 ->constrained('statuses')
                 ->nullOnDelete();

@@ -15,7 +15,7 @@ class TaskService implements TaskServiceInterface
      */
     public function fetchTasks()
     {
-        return Task::paginate(8);
+        return Task::get();
     }
 
     /**
@@ -33,7 +33,7 @@ class TaskService implements TaskServiceInterface
     {
         return Task::create([
             'name' => $request->name,
-            'statuses_id' => 1
+            'status_id' => 1
         ]);
     }
 

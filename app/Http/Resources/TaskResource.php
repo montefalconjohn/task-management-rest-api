@@ -15,7 +15,7 @@ class TaskResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'type' => 'water-districts',
+            'type' => 'tasks',
             'id' => (string)$this->id,
             'attributes' => [
                 'name' => $this->name
