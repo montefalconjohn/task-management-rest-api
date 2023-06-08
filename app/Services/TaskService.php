@@ -12,7 +12,7 @@ class TaskService implements TaskServiceInterface
 {
     public function fetchTasks()
     {
-        // TODO: Implement fetchTasks() method.
+        return Task::paginate(8);
     }
 
     public function fetchTaskBySearchParam(string $searchParam)
@@ -22,7 +22,10 @@ class TaskService implements TaskServiceInterface
 
     public function createTask(StoreTaskRequest $request): Task
     {
-        // TODO: Implement createTask() method.
+        return Task::create([
+            'name' => $request->name,
+            'status_id' => $request->status
+        ]);
     }
 
     public function updateTask(UpdateTaskRequest $request, int $id): void
