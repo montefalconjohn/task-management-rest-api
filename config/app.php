@@ -195,6 +195,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\TaskServiceProvider::class,
+        App\Providers\StatusServiceProvider::class,
 
     ],
 

@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
-use App\Services\Tasks\TaskService;
+use App\Services\Statuses\StatusService;
 use Illuminate\Support\ServiceProvider;
 
-class TaskServiceProvider extends ServiceProvider
+class StatusServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -24,6 +24,6 @@ class TaskServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind('App\Services\Tasks\TaskServiceInterface', TaskService::class);
+        $this->app->bind('App\Services\Statuses\StatusServiceInterface', StatusService::class);
     }
 }
