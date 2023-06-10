@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\TaskResource;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
-use App\Services\TaskServiceInterface;
+use App\Services\Tasks\TaskServiceInterface;
 use Illuminate\Http\JsonResponse;
 
 class TaskController extends Controller

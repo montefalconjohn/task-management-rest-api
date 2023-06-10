@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Services\TaskService;
+use App\Services\Tasks\TaskService;
 use Illuminate\Support\ServiceProvider;
 
 class TaskServiceProvider extends ServiceProvider
@@ -24,6 +24,6 @@ class TaskServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind('App\Services\TaskServiceInterface', TaskService::class);
+        $this->app->bind('App\Services\Tasks\TaskServiceInterface', TaskService::class);
     }
 }
