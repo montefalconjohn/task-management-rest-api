@@ -8,6 +8,9 @@ use App\Models\Task;
 
 class TaskService implements TaskServiceInterface
 {
+    /** @var string */
+    private const DEFAULT_KEYWORD = "all";
+
     /**
      * @inheritDoc
      */
@@ -21,7 +24,28 @@ class TaskService implements TaskServiceInterface
      */
     public function fetchTaskBySearchParam(string $searchParam)
     {
-        // TODO: Implement fetchTaskBySearchParam() method.
+        // Decode search param
+        $searchKeyword = $this->decodeSearchParam($searchParam);
+
+        if ($searchKeyword === self::DEFAULT_KEYWORD) {
+            $result = Task::get();
+        } else {
+            $result = Task::where('name', 'like', '%' . $searchKeyword . '%')->paginate(8);
+        }
+
+        return $result;
+    }
+
+    /**
+     * Decodes Search Parameter
+     *
+     * @param string $searchParam
+     * @return string
+     */
+    private function decodeSearchParam(string $searchParam): string
+    {
+        $explodedParam = explode("=", $searchParam);
+        return urldecode($explodedParam[1]);
     }
 
     /**
