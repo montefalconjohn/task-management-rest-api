@@ -18,6 +18,7 @@ use App\Http\Controllers\StatusController;
 Route::group(['prefix' => 'task-management'], function () {
     Route::controller(TaskController::class)->group(function () {
         Route::get('/tasks', 'index');
+        Route::get('/tasks/search/{searchParam}', 'showTaskEntityBySearchParam');
         Route::post('/tasks', 'store');
         Route::patch('/tasks/{id}', 'update');
         Route::delete('/tasks/{id}', 'destroy');

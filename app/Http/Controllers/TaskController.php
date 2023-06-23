@@ -7,6 +7,7 @@ use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Services\Tasks\TaskServiceInterface;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -55,6 +56,17 @@ class TaskController extends Controller
     {
         $this->taskService->updateTask($request, $id);
         return response()->json('Task Updated.');
+    }
+
+    /**
+     * Fetches Task Entity by Search param
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function showTaskEntityBySearchParam(Request $request): JsonResponse
+    {
+
     }
 
     /**
