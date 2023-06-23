@@ -10,11 +10,6 @@ use JetBrains\PhpStorm\ArrayShape;
 class TaskResource extends JsonResource
 {
     /**
-     * @var mixed
-     */
-    private $status;
-
-    /**
      * Transform the resource into an array.
      *
      * @param Request $request

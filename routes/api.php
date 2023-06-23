@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\TrashTaskController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,12 @@ Route::group(['prefix' => 'task-management'], function () {
         Route::post('/tasks', 'store');
         Route::patch('/tasks/{id}', 'update');
         Route::delete('/tasks/{id}', 'destroy');
+    });
+
+    Route::controller(TrashTaskController::class)->group(function () {
+        Route::get('/trash-tasks', 'index');
+        Route::patch('/trash-tasks/{id}', 'update');
+        Route::delete('/trash-tasks/{id}', 'destroy');
     });
 
     Route::controller(StatusController::class)->group(function () {

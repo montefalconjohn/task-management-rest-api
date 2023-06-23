@@ -14,7 +14,7 @@ class TaskService implements TaskServiceInterface
     /**
      * @inheritDoc
      */
-    public function fetchTasks()
+    public function fetchTasks(): mixed
     {
         return Task::get();
     }
@@ -22,7 +22,7 @@ class TaskService implements TaskServiceInterface
     /**
      * @inheritDoc
      */
-    public function fetchTaskBySearchParam(string $searchParam)
+    public function fetchTaskBySearchParam(string $searchParam): mixed
     {
         // Decode search param
         $searchKeyword = $this->decodeSearchParam($searchParam);
@@ -30,7 +30,7 @@ class TaskService implements TaskServiceInterface
         if ($searchKeyword === self::DEFAULT_KEYWORD) {
             $result = Task::get();
         } else {
-            $result = Task::where('name', 'like', '%' . $searchKeyword . '%')->paginate(8);
+            $result = Task::where('name', 'like', '%' . $searchKeyword . '%')->get();
         }
 
         return $result;

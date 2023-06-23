@@ -196,6 +196,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\TaskServiceProvider::class,
         App\Providers\StatusServiceProvider::class,
+        App\Providers\TrashServiceProvider::class,
 
     ],
 
