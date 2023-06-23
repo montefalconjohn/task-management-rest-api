@@ -4,8 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Exception;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+
 
 class Task extends Model
 {
@@ -31,10 +35,17 @@ class Task extends Model
      *
      * @param int $id
      * @return static
+     * @throws Exception
      */
-    public static function getTrashedTaskById(int $id): self
+    public static function getTrashedTaskById(int $id): static
     {
-        return self::onlyTrashed()->find($id);
+        try {
+            $trashTask = self::onlyTrashed()->findOrFail($id);
+        } catch (ModelNotFoundException $exception) {
+            throw new Exception("Task with ID {$id} does not exists", 500);
+        }
+
+        return $trashTask;
     }
 
     /**
