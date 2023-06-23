@@ -18,7 +18,9 @@ class TaskResource extends JsonResource
             'type' => 'tasks',
             'id' => (string)$this->id,
             'attributes' => [
-                'name' => $this->name
+                'name' => $this->name,
+                'createdBy' => $this->created_at,
+                'updatedAt' => $this->updated_at
             ],
             'relationships' => [
                 'statuses' => new StatusResource($this->status),
