@@ -30,7 +30,7 @@ class TaskService implements TaskServiceInterface
         if ($searchKeyword === self::DEFAULT_KEYWORD) {
             $result = Task::get();
         } else {
-            $result = Task::where('name', $searchKeyword);
+            $result = Task::where('name', 'like', '%' . $searchKeyword . '%')->paginate(8);
         }
 
         return $result;

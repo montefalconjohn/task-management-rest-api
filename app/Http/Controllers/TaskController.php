@@ -46,6 +46,17 @@ class TaskController extends Controller
     }
 
     /**
+     * Fetches Task Entity by Search param
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function showTaskEntityBySearchParam(Request $request)
+    {
+        return TaskResource::collection($this->taskService->fetchTaskBySearchParam($request->searchParam));
+    }
+
+    /**
      * Update the specified resource in storage
      *
      * @param UpdateTaskRequest $request
@@ -56,17 +67,6 @@ class TaskController extends Controller
     {
         $this->taskService->updateTask($request, $id);
         return response()->json('Task Updated.');
-    }
-
-    /**
-     * Fetches Task Entity by Search param
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
-     */
-    public function showTaskEntityBySearchParam(Request $request)
-    {
-        return TaskResource::collection($this->taskService->fetchTaskBySearchParam($request->searchParam));
     }
 
     /**
