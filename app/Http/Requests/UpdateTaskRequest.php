@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use JetBrains\PhpStorm\ArrayShape;
 
 class UpdateTaskRequest extends FormRequest
 {
@@ -21,7 +22,7 @@ class UpdateTaskRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    #[ArrayShape(['name' => "string", 'status_id' => "string"])] public function rules(): array
     {
         return [
             'name' => 'filled|unique:tasks,name|string|min:1|max:255',

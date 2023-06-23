@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateTaskRequest;
 use App\Services\Tasks\TaskServiceInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class TaskController extends Controller
 {
@@ -27,9 +28,9 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
         return TaskResource::collection($this->taskService->fetchTasks());
     }
@@ -49,9 +50,9 @@ class TaskController extends Controller
      * Fetches Task Entity by Search param
      *
      * @param Request $request
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      */
-    public function showTaskEntityBySearchParam(Request $request)
+    public function showTaskEntityBySearchParam(Request $request): AnonymousResourceCollection
     {
         return TaskResource::collection($this->taskService->fetchTaskBySearchParam($request->searchParam));
     }

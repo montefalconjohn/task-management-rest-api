@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\StatusResource;
 use App\Services\Statuses\StatusServiceInterface;
-use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class StatusController extends Controller
 {
@@ -24,9 +24,9 @@ class StatusController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection
      */
-    public function index()
+    public function index(): AnonymousResourceCollection
     {
         return StatusResource::collection($this->statusService->fetchStatuses());
     }
