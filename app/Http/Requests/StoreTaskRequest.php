@@ -24,7 +24,7 @@ class StoreTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|min:1|max:255'
+            'name' => 'required|unique:tasks,name|string|min:1|max:255'
         ];
     }
 }

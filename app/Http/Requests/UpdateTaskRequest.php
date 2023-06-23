@@ -24,7 +24,7 @@ class UpdateTaskRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'filled|string|min:1|max:255',
+            'name' => 'filled|unique:tasks,name|string|min:1|max:255',
             'status_id' => 'filled|string|exists:statuses,id'
         ];
     }

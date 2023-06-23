@@ -62,11 +62,11 @@ class TaskController extends Controller
      * Fetches Task Entity by Search param
      *
      * @param Request $request
-     * @return JsonResponse
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function showTaskEntityBySearchParam(Request $request): JsonResponse
+    public function showTaskEntityBySearchParam(Request $request)
     {
-
+        return TaskResource::collection($this->taskService->fetchTaskBySearchParam($request->searchParam));
     }
 
     /**
