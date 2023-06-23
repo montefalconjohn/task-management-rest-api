@@ -15,7 +15,7 @@ interface TaskServiceInterface
      *
      * @return mixed
      */
-    public function fetchTasks();
+    public function fetchTasks(): mixed;
 
     /**
      * Fetches task by search param
@@ -23,7 +23,7 @@ interface TaskServiceInterface
      * @param string $searchParam
      * @return mixed
      */
-    public function fetchTaskBySearchParam(string $searchParam);
+    public function fetchTaskBySearchParam(string $searchParam): mixed;
 
     /**
      * Creates Task

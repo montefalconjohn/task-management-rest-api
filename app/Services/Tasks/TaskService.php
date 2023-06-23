@@ -14,7 +14,7 @@ class TaskService implements TaskServiceInterface
     /**
      * @inheritDoc
      */
-    public function fetchTasks()
+    public function fetchTasks(): mixed
     {
         return Task::get();
     }
@@ -22,7 +22,7 @@ class TaskService implements TaskServiceInterface
     /**
      * @inheritDoc
      */
-    public function fetchTaskBySearchParam(string $searchParam)
+    public function fetchTaskBySearchParam(string $searchParam): mixed
     {
         // Decode search param
         $searchKeyword = $this->decodeSearchParam($searchParam);

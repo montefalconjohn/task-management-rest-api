@@ -27,6 +27,17 @@ class Task extends Model
     }
 
     /**
+     * Fetches trashed task by id
+     *
+     * @param int $id
+     * @return static
+     */
+    public static function getTrashedTaskById(int $id): self
+    {
+        return self::onlyTrashed()->find($id);
+    }
+
+    /**
      * One task only belongs to one status
      *
      * @return BelongsTo
