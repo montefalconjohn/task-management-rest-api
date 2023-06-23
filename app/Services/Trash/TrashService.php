@@ -11,7 +11,7 @@ class TrashService implements TrashServiceInterface
      */
     public function fetchDeletedTasks(): mixed
     {
-        return Task::withTrashed()->get();
+        return Task::onlyTrashed()->get();
     }
 
     /**
@@ -20,7 +20,10 @@ class TrashService implements TrashServiceInterface
     public function restoreTask(int $id): void
     {
         // Fetch Task
-        $
+        $trashedTask = Task::getTrashedTaskById($id);
+
+        // Restore
+        $trashedTask->restore();
     }
 
     /**
@@ -28,6 +31,10 @@ class TrashService implements TrashServiceInterface
      */
     public function deleteTaskPermanently(int $id): void
     {
-        // TODO: Implement deleteTaskPermanently() method.
+        // Fetch Task
+        $trashedTask = Task::getTrashedTaskById($id);
+
+        // Permanently Delete
+        $trashedTask->forceDelete();
     }
 }
